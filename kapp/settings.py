@@ -58,10 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'kapp.urls'
 TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
