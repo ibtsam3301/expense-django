@@ -27,10 +27,8 @@ SECRET_KEY = '$pq!e^)i0w+0w=4(7we5u&yue@!u+6wp-#c^2mwi&=z4icho7i'
 DEBUG = True
 
 ALLOWED_HOSTS = ['ibtsam3301.pythonanywhere.com', '127.0.0.1']
-ALLOWED_ORIGINS = ['http://ibtsam3301.pythonanywhere.com', 'https://ibtsam3301.pythonanywhere.com']
-CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
+CSRF_TRUSTED_ORIGINS = ['http://ibtsam3301.pythonanywhere.com', 'https://ibtsam3301.pythonanywhere.com']
+
 
 AUTH_USER_MODEL = 'users.User'
 
