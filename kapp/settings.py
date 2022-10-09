@@ -35,7 +35,7 @@ AUTH_USER_MODEL = 'users.User'
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+    # 'jazzmin',
 
     'django.contrib.admin',
     'django.contrib.auth',
