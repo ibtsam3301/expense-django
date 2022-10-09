@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['ibtsam3301.pythonanywhere.com', '127.0.0.1']
 ALLOWED_ORIGINS = ['http://*.ibtsam3301.pythonanywhere.com', 'https://*.ibtsam3301.pythonanywhere.com']
 CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
 CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
