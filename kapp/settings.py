@@ -29,7 +29,7 @@ DEBUG = False
 ALLOWED_HOSTS = ['ibtsam3301.pythonanywhere.com', '127.0.0.1']
 ALLOWED_ORIGINS = ['http://*', 'https://*']
 CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
-
+CSRF_COOKIE_SECURE = False
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
