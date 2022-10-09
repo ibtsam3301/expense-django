@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% load temp_filters %} 
+{% block content %}
+
+<div class="mt-5 flex space-x-2 justify-center">
+        <!-- Bg orange -->
+        {% if total_bill %}
+        <div class=" p-7 max-w-screen-lg bg-blue-500 shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
+        <h2 class="text-3xl leading-9 font-bold tracking-tight text-white sm:text-4xl sm:leading-10">
+            Total Bill {{total_bill}}
+        </h2>
+        
+        <div class="mt-8 justify-center">
+            {% if khatas %}
+            <div class="">
+                {% for khata in khatas %}
+                <div class="text-left">
+                {{khata.description}} --- {{khata.date}} --- {{khata.amount}} = {{khata.paid_by.first_name  }} <br/>
+            </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <div class="">
+                <div class="text-center">
+                   <br/> Electricity Bill = {{electricity_bill}} <br/> due date : {{due_date}}<br/>
+            </div>
+            </div>
+
+            <div class="">
+                <div class="text-center">
+                   <br/> Water Bill = {{water_bill}} <br/>
+            </div>
+            </div>
+
+        </div>
+        
+       
+        <div class="mt-8 flex justify-center">
+            <div class="">
+                {% for user in users %}
+                <div class="text-left mb-3">
+                {{user.first_name}} {{user.last_name}} = {{bill_split}} {% check_khata user bill_split %} <br/>
+            </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="{% url 'download-pdf' year month %}" type="button" class="mt-7 inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Download Pdf</a>
+       
+    </div>
+        {% endif %}
+</div>
+
+{% endblock %}
