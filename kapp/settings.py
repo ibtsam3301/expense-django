@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['ibtsam3301.pythonanywhere.com']
 CSRF_TRUSTED_ORIGINS=['https://ibtsam3301.pythonanywhere.com']
+CSRF_COOKIE_DOMAIN = ['ibtsam3301.pythonanywhere.com']
 AUTH_USER_MODEL = 'users.User'
 
 # Application definition
