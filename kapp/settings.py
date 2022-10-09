@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-$pq!e^)i0w+0w=4(7we5u&yue@!u+6wp-#c^2mwi&=z4icho7i
 DEBUG = False
 
 ALLOWED_HOSTS = ['ibtsam3301.pythonanywhere.com', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 ALLOWED_ORIGINS = ['http://*', 'https://*']
+CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
 
 AUTH_USER_MODEL = 'users.User'
 
