@@ -90,7 +90,7 @@ DATABASES = {
     }
 }
 
-CSRF_COOKIE_DOMAIN = '127.0.0.1'
+CSRF_COOKIE_DOMAIN = 'pythonanywhere.com'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
