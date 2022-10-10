@@ -34,7 +34,7 @@ class ElectricityBill(BaseModel):
     amount = models.IntegerField()
     month = MonthField("Month Value", help_text="electricity bill")
     due_date = models.DateField(blank=True, null=True, help_text="due date")
-   
+    bill_month = models.CharField(max_length=10, null=True, help_text="bill month")
     def __str__(self) -> str:
         return str(self.amount)
 
