@@ -76,6 +76,7 @@ def homepage(request):
             total_bill, bill_split, \
             total_users, khatas, electricity_bill, water_bill, month_year, due_date, internet_bill, bill_month = get_data_from_model(year, month)
         except Exception as e:
+            print(e)
             return redirect('generate-bill')    
         
         context = {"total_bill": total_bill, 
