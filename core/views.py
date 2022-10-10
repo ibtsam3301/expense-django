@@ -18,6 +18,7 @@ def get_and_save_electricity_bill(month):
     bill_url = 'http://www.lesco.gov.pk:36269/BillNew.aspx?BatchNo=08&SubDiv=11218&RefNo=1669101&RU=U&Exec=941N7'
     r = requests.get(bill_url)
     soup = BeautifulSoup(r.text, 'html.parser')
+    print(soup)
     bill_month = soup.select_one('#page1-div > p:nth-child(53) > b').text
     bill_month = ''.join([i for i in bill_month if not i.isdigit()])
     if bill_month.lower() != month_of_bill[3].lower():
