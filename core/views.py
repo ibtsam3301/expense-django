@@ -51,7 +51,7 @@ def get_data_from_model(year, month):
     internet_bill = InternetBill.objects.all().filter(month__month=month_year.month).first().amount
     khatas = Khata.objects.filter(date__month=month_year.month).select_related('paid_by')
    
-    khata_bill = Khata.objects.aggregate(Sum('amount'))['amount__sum']
+    khata_bill = Khata.objects.filter(date__month=month_year.month).aggregate(Sum('amount'))['amount__sum']
     if not khata_bill:
         khata_bill = 0
 
