@@ -26,7 +26,7 @@ def get_and_save_electricity_bill(month):
         
         ElectricityBill.objects.create(
             amount=int(bill.replace("Rs. ", "").replace(",", "")),
-            month = date(2022, int(datetime.strftime(month,'%m')), 1),
+            month = date(month.year, int(datetime.strftime(month,'%m')), 1),
             due_date = due_date
         )
         return bill, due_date
@@ -36,7 +36,7 @@ def get_and_save_electricity_bill(month):
 def get_data_from_model(year, month):
     month_year = date(int(year), int(month), 1) 
     monthly_bill = MonthlyRent.objects.all().first().amount
-    electricity_bill_data = ElectricityBill.objects.filter(month__month=month_year.month).first()
+    electricity_bill_data = ElectricityBill.objects.filter(month__month=month_year.month, month__year=month_year.year).first()
     if electricity_bill_data:
         electricity_bill = electricity_bill_data.amount
         due_date = electricity_bill_data.due_date
@@ -47,11 +47,11 @@ def get_data_from_model(year, month):
         except:
             electricity_bill = 0
             
-    water_bill = WaterBill.objects.all().filter(month__month=month_year.month).first().amount
-    internet_bill = InternetBill.objects.all().filter(month__month=month_year.month).first().amount
-    khatas = Khata.objects.filter(date__month=month_year.month).select_related('paid_by')
+    water_bill = WaterBill.objects.all().filter(month__month=month_year.month, month__year=month_year.year).first().amount
+    internet_bill = InternetBill.objects.all().filter(month__month=month_year.month, month__year=month_year.year).first().amount
+    khatas = Khata.objects.filter(date__month=month_year.month, date__year=month_year.year).select_related('paid_by')
    
-    khata_bill = Khata.objects.filter(date__month=month_year.month).aggregate(Sum('amount'))['amount__sum']
+    khata_bill = Khata.objects.filter(date__month=month_year.month, date__year=month_year.year).aggregate(Sum('amount'))['amount__sum']
     if not khata_bill:
         khata_bill = 0
 

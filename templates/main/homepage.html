@@ -45,7 +45,7 @@
             <div class="">
                 {% for user in users %}
                 <div class="text-left mb-3">
-                {{user.first_name}} {{user.last_name}} = {{bill_split}} {% check_khata user bill_split %} <br/>
+                {{user.first_name}} {{user.last_name}} = {{bill_split}} {% check_khata user bill_split year month %} <br/>
             </div>
                 {% endfor %}
             </div>
