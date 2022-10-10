@@ -163,7 +163,7 @@ JAZZMIN_SETTINGS = {
 
         # external url that opens in a new window (Permissions can be added)
 
-        {"name": "Generte Bill",  "url": "/generate-bill",},
+        {"name": "Generte Bill",  "url": "/",},
 
 
     ],

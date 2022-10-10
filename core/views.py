@@ -48,6 +48,7 @@ def get_data_from_model(year, month):
             electricity_bill = 0
             
     water_bill = WaterBill.objects.all().filter(month__month=month_year.month).first().amount
+    internet_bill = InternetBill.objects.all().filter(month__month=month_year.month).first().amount
     khatas = Khata.objects.filter(date__month=month_year.month).select_related('paid_by')
    
     khata_bill = Khata.objects.aggregate(Sum('amount'))['amount__sum']
@@ -55,13 +56,13 @@ def get_data_from_model(year, month):
         khata_bill = 0
 
         
-    total_bill = monthly_bill + electricity_bill + water_bill + khata_bill
+    total_bill = monthly_bill + electricity_bill + water_bill + khata_bill + internet_bill
     
     total_users = User.objects.filter(is_superuser=False)
     
     bill_split = total_bill/total_users.count()
 
-    return total_bill, bill_split, total_users, khatas, electricity_bill, water_bill, month_year, due_date
+    return total_bill, bill_split, total_users, khatas, electricity_bill, water_bill, month_year, due_date, internet_bill
     
 def homepage(request):
     context = {}
@@ -70,7 +71,7 @@ def homepage(request):
         month = request.POST["month"]
         try:
             total_bill, bill_split, \
-            total_users, khatas, electricity_bill, water_bill, month_year, due_date = get_data_from_model(year, month)
+            total_users, khatas, electricity_bill, water_bill, month_year, due_date, internet_bill = get_data_from_model(year, month)
         except:
             return redirect('generate-bill')    
         
@@ -79,6 +80,7 @@ def homepage(request):
                    "users":total_users, 
                    'khatas':khatas,
                    "electricity_bill":electricity_bill,
+                   "internet_bill":internet_bill,
                    "due_date":due_date,
                    "water_bill":water_bill,
                    "year":year,
@@ -104,7 +106,7 @@ def check_khata(user, bill):
 def generate_PDF(request, year, month):
  
     total_bill, bill_split, total_users, khatas, \
-    electricity_bill, water_bill, month_year, due_date = get_data_from_model(year, month)
+    electricity_bill, water_bill, month_year, due_date, internet_bill = get_data_from_model(year, month)
     current_month = month_year.strftime("%B")
     response = HttpResponse(content_type='application/pdf') 
 
@@ -129,6 +131,9 @@ def generate_PDF(request, year, month):
         khata_y-=30
     
     p.drawCentredString(x,khata_y-30,f"Electricity Bill = {electricity_bill} (due date: {due_date})")
+    khata_y-=30
+    
+    p.drawCentredString(x,khata_y-30,f"Internet Bill = {internet_bill}")
     khata_y-=30
     
     p.drawCentredString(x,khata_y-30,f"Water Bill = {water_bill}")

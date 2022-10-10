@@ -22,3 +22,13 @@ class WaterForm(forms.ModelForm):
     required=False,
     widget=MonthYearWidget()
 )
+    
+class InternetForm(forms.ModelForm):
+    class Meta:
+        model = InternetBill
+        exclude = []
+
+    month = forms.DateField(
+    required=False,
+    widget=MonthYearWidget()
+)

@@ -17,3 +17,7 @@ class ElectricityBillAdmin(admin.ModelAdmin):
 @admin.register(WaterBill)
 class WaterBillAdmin(admin.ModelAdmin):
     form = WaterForm
+
+@admin.register(InternetBill)
+class InternetBillAdmin(admin.ModelAdmin):
+    form = InternetForm

@@ -44,3 +44,8 @@ class WaterBill(BaseModel):
    
     def __str__(self) -> str:
         return str(self.amount)
+    
+class InternetBill(BaseModel):
+    amount = models.IntegerField()
+    month = MonthField("Month Value", help_text="water bill")
+   
