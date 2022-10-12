@@ -160,5 +160,5 @@ def generate_PDF(request, year, month):
 
 
 def csrf_failure(request, reason=""):
-    ctx = {}
-    return render('errors/forbidden.html', ctx)
+    
+    return render(request,'errors/forbidden.html')
